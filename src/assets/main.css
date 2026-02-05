@@ -1,0 +1,372 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cyber-bg-dark: #09090b;
+  --cyber-bg-medium: #18181b;
+  --cyber-bg-card: #27272a;
+  --cyber-border: #3f3f46;
+  --cyber-cyan: #6366f1;
+  --cyber-magenta: #8b5cf6;
+  --cyber-lime: #22c55e;
+  --cyber-yellow: #eab308;
+  --cyber-orange: #f59e0b;
+  --cyber-text: #fafafa;
+  --cyber-text-dim: #a1a1aa;
+  --cyber-glow-cyan: rgba(99, 102, 241, 0.4);
+  --cyber-glow-magenta: rgba(139, 92, 246, 0.4);
+  --cyber-glow-lime: rgba(34, 197, 94, 0.4);
+
+  /* Status colors */
+  --status-success: #22c55e;
+  --status-info: #3b82f6;
+  --status-warning: #f59e0b;
+  --status-error: #ef4444;
+  --status-critical: #dc2626;
+
+  /* Timing colors */
+  --timing-dns: #3b82f6;
+  --timing-connect: #8b5cf6;
+  --timing-send: #22c55e;
+  --timing-wait: #f59e0b;
+  --timing-receive: #ec4899;
+  --timing-ssl: #a855f7;
+}
+
+@layer base {
+  * {
+    @apply border-cyber-border;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--cyber-bg-dark);
+  color: var(--cyber-text);
+  overflow-x: hidden;
+}
+
+#app {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+@keyframes slide-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-up {
+  animation: slide-in-up 0.4s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.4s ease-out forwards;
+}
+
+/* PrimeVue Global Overrides for Dark Theme */
+
+/* Force remove ALL white backgrounds from PrimeVue components */
+.p-datatable,
+.p-datatable *,
+.p-datatable table,
+.p-datatable thead,
+.p-datatable tbody,
+.p-datatable tfoot,
+.p-datatable tr,
+.p-datatable th,
+.p-datatable td,
+.p-datatable-wrapper,
+.p-datatable-table,
+.p-datatable-thead,
+.p-datatable-tbody,
+.p-datatable-tfoot {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Ensure cells don't have white background */
+.p-datatable tbody tr td {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.p-dropdown-panel {
+  background: var(--cyber-bg-card) !important;
+  border: 1px solid var(--cyber-border) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4) !important;
+}
+
+.p-dropdown-panel .p-dropdown-items {
+  background: transparent !important;
+}
+
+.p-dropdown-panel .p-dropdown-item {
+  color: var(--cyber-text) !important;
+  background: transparent !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.875rem;
+}
+
+.p-dropdown-panel .p-dropdown-item:hover {
+  background: var(--cyber-bg-medium) !important;
+  color: var(--cyber-cyan) !important;
+}
+
+.p-dropdown-panel .p-dropdown-item.p-highlight {
+  background: var(--cyber-bg-medium) !important;
+  color: var(--cyber-cyan) !important;
+}
+
+.p-contextmenu {
+  background: var(--cyber-bg-card) !important;
+  border: 1px solid var(--cyber-border) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4) !important;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 0.25rem 0;
+  border-radius: 0.5rem;
+}
+
+.p-contextmenu .p-menuitem-content {
+  padding: 0.5rem 1rem;
+  background: transparent !important;
+}
+
+.p-contextmenu .p-menuitem:not(.p-disabled) > .p-menuitem-content:hover {
+  background: var(--cyber-bg-medium) !important;
+}
+
+.p-contextmenu .p-menuitem:not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-text,
+.p-contextmenu .p-menuitem:not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-icon {
+  color: var(--cyber-cyan) !important;
+}
+
+.p-contextmenu .p-menuitem-link {
+  color: var(--cyber-text) !important;
+  background: transparent !important;
+}
+
+.p-contextmenu .p-menuitem-text {
+  color: var(--cyber-text) !important;
+}
+
+.p-contextmenu .p-menuitem-icon {
+  color: var(--cyber-cyan) !important;
+}
+
+.p-contextmenu .p-menuitem.p-disabled .p-menuitem-content {
+  opacity: 0.5;
+}
+
+.p-contextmenu .p-menuitem.p-disabled .p-menuitem-text,
+.p-contextmenu .p-menuitem.p-disabled .p-menuitem-icon {
+  color: var(--cyber-text-dim) !important;
+}
+
+.p-contextmenu .p-menuitem:focus,
+.p-contextmenu .p-menuitem-content:focus,
+.p-contextmenu .p-menuitem-link:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.p-contextmenu .p-menuitem.p-focus > .p-menuitem-content {
+  background: var(--cyber-bg-medium) !important;
+}
+
+.p-contextmenu .p-menuitem.p-focus > .p-menuitem-content .p-menuitem-text,
+.p-contextmenu .p-menuitem.p-focus > .p-menuitem-content .p-menuitem-icon {
+  color: var(--cyber-cyan) !important;
+}
+
+/* Selected Row Styling */
+.cyber-table :deep(.p-datatable-tbody > tr.selected-row) {
+  background: rgba(99, 102, 241, 0.12) !important;
+  border-left: 3px solid var(--cyber-cyan) !important;
+}
+
+/* Request Details Drawer Styling */
+.request-details-drawer.p-sidebar {
+  background: var(--cyber-bg-card) !important;
+  border-left: 1px solid var(--cyber-border) !important;
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Sidebar Mask/Overlay */
+.p-sidebar-mask {
+  background: rgba(9, 9, 11, 0.75) !important;
+  backdrop-filter: blur(4px);
+}
+
+.request-details-drawer .p-sidebar-header {
+  background: var(--cyber-bg-medium) !important;
+  border-bottom: 1px solid var(--cyber-border) !important;
+  padding: 1.5rem !important;
+  color: var(--cyber-text) !important;
+}
+
+.request-details-drawer .p-sidebar-content {
+  background: var(--cyber-bg-card) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.request-details-drawer .p-sidebar-close {
+  color: var(--cyber-text-dim) !important;
+}
+
+.request-details-drawer .p-sidebar-close:hover {
+  background: var(--cyber-bg-card) !important;
+  color: var(--cyber-text) !important;
+}
+
+.request-details-drawer .p-sidebar-header-content {
+  width: 100%;
+}
+
+/* Tab View Styling in Drawer */
+.request-details-drawer .p-tabview {
+  background: transparent !important;
+}
+
+.request-details-drawer .p-tabview-nav {
+  background: var(--cyber-bg-medium) !important;
+  border-bottom: 1px solid var(--cyber-border) !important;
+  padding: 0 1.5rem !important;
+}
+
+.request-details-drawer .p-tabview-nav-content {
+  background: transparent !important;
+}
+
+/* Tab list items */
+.request-details-drawer .p-tabview-nav li {
+  margin: 0 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Regular tab link */
+.request-details-drawer .p-tabview-nav-link {
+  color: var(--cyber-text-dim) !important;
+  border: none !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding: 0.875rem 1.25rem !important;
+  transition: all 0.15s !important;
+  background: transparent !important;
+  border-bottom: 2px solid transparent !important;
+}
+
+/* Hover state */
+.request-details-drawer .p-tabview-nav-link:hover {
+  color: var(--cyber-text) !important;
+  background: rgba(99, 102, 241, 0.05) !important;
+}
+
+/* Active/Selected tab */
+.request-details-drawer .p-tabview-nav-link.p-highlight,
+.request-details-drawer .p-tabview-nav li.p-highlight .p-tabview-nav-link,
+.request-details-drawer .p-tabview-nav-link[aria-selected="true"] {
+  color: var(--cyber-cyan) !important;
+  background: rgba(99, 102, 241, 0.08) !important;
+  border-bottom: 2px solid var(--cyber-cyan) !important;
+  font-weight: 600 !important;
+}
+
+/* Active tab list item */
+.request-details-drawer .p-tabview-nav li.p-highlight {
+  background: transparent !important;
+}
+
+.request-details-drawer .p-tabview-panels {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.request-details-drawer .p-tabview-panel {
+  padding: 1.5rem !important;
+  background: var(--cyber-bg-card) !important;
+}
+
+/* Panel Styling in Drawer */
+.request-details-drawer .p-panel {
+  background: var(--cyber-bg-dark) !important;
+  border: 1px solid var(--cyber-border) !important;
+  border-radius: 0.5rem !important;
+}
+
+.request-details-drawer .p-panel-header {
+  background: var(--cyber-bg-medium) !important;
+  border-bottom: 1px solid var(--cyber-border) !important;
+  color: var(--cyber-cyan) !important;
+}
+
+.request-details-drawer .p-panel-content {
+  background: transparent !important;
+  border: none !important;
+  color: var(--cyber-text) !important;
+}
+
+.request-details-drawer .p-panel-toggler {
+  color: var(--cyber-text-dim) !important;
+}
+
+/* Input Styling in Drawer */
+.request-details-drawer .p-inputtext {
+  background: var(--cyber-bg-dark) !important;
+  border: 1px solid var(--cyber-border) !important;
+  color: var(--cyber-text) !important;
+  border-radius: 0.375rem !important;
+}
+
+.request-details-drawer .p-inputtext:focus {
+  border-color: var(--cyber-cyan) !important;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2) !important;
+}
+
+/* Button Styling in Drawer */
+.request-details-drawer .p-button {
+  background: var(--cyber-bg-medium) !important;
+  border: 1px solid var(--cyber-border) !important;
+  color: var(--cyber-text) !important;
+  border-radius: 0.375rem !important;
+}
+
+.request-details-drawer .p-button:hover {
+  background: var(--cyber-bg-card) !important;
+  border-color: var(--cyber-cyan) !important;
+}
