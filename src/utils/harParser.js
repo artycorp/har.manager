@@ -135,7 +135,27 @@ export function parseHarFile(harData, filename) {
       const serverTiming = extractHeader(respHeaders, "Server-Timing");
       const serverTimingDur = parseServerTimingDur(serverTiming);
 
+      // Extract Request ID / Trace ID
       let xRequestId = extractHeader(respHeaders, "X-Request-ID") || extractHeader(reqHeaders, "X-Request-ID");
+      let traceIdField = null;
+
+      // Try to find traceId in JSON response body
+      if (response.content && response.content.mimeType === "application/json" && response.content.text) {
+        try {
+          const body = JSON.parse(response.content.text);
+          if (body && body.traceId) {
+            traceIdField = body.traceId;
+          }
+        } catch (e) {
+          // ignore parse errors
+        }
+      }
+
+      // Fallback for x_request_id if header not found
+      if (!xRequestId && traceIdField) {
+        xRequestId = traceIdField;
+      }
+
       const clientIp = extractHeader(reqHeaders, "X-Forwarded-For");
       const authority = extractHeader(reqHeaders, ":authority") || extractHeader(reqHeaders, "Host");
       const sentryTrace = extractHeader(reqHeaders, "sentry-trace");
@@ -186,6 +206,7 @@ export function parseHarFile(harData, filename) {
         server_timing: serverTiming,
         server_timing_dur: serverTimingDur,
         x_request_id: xRequestId,
+        trace_id: traceIdField,
         sentry_trace: sentryTrace
       };
     } catch (e) {

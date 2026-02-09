@@ -120,7 +120,6 @@ const formatDuration = (ms) => {
   position: relative;
   display: flex;
   min-width: 20px;
-  background-color: var(--cyber-bg-card) !important;
 }
 
 .waterfall-bar {
@@ -129,8 +128,9 @@ const formatDuration = (ms) => {
   border-radius: 4px;
   overflow: hidden;
   position: relative;
-  background: rgba(42, 53, 72, 0.3);
+  background: rgba(42, 53, 72, 0.3) !important;
   border: 1px solid rgba(42, 53, 72, 0.5);
+  width: 100%;
 }
 
 .waterfall-segment {
@@ -159,7 +159,7 @@ const formatDuration = (ms) => {
 
 /* DNS - Cyan */
 .waterfall-segment.dns {
-  background: linear-gradient(180deg, #00bfff 0%, #0099cc 100%);
+  background: linear-gradient(180deg, #00bfff 0%, #0099cc 100%) !important;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
@@ -169,7 +169,7 @@ const formatDuration = (ms) => {
 
 /* Connect - Purple */
 .waterfall-segment.connect {
-  background: linear-gradient(180deg, #8b5cf6 0%, #7c3aed 100%);
+  background: linear-gradient(180deg, #8b5cf6 0%, #7c3aed 100%) !important;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
@@ -179,7 +179,7 @@ const formatDuration = (ms) => {
 
 /* Send - Lime */
 .waterfall-segment.send {
-  background: linear-gradient(180deg, #00ff88 0%, #00cc6a 100%);
+  background: linear-gradient(180deg, #00ff88 0%, #00cc6a 100%) !important;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
@@ -189,7 +189,7 @@ const formatDuration = (ms) => {
 
 /* Wait - Orange */
 .waterfall-segment.wait {
-  background: linear-gradient(180deg, #ffa500 0%, #ff8800 100%);
+  background: linear-gradient(180deg, #ffa500 0%, #ff8800 100%) !important;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
@@ -199,7 +199,7 @@ const formatDuration = (ms) => {
 
 /* Receive - Magenta */
 .waterfall-segment.receive {
-  background: linear-gradient(180deg, #ff0080 0%, #cc0066 100%);
+  background: linear-gradient(180deg, #ff0080 0%, #cc0066 100%) !important;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
