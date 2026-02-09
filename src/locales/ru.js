@@ -96,7 +96,7 @@ export default {
     saveButton: 'Сохранить конфигурацию',
     saving: 'Сохранение...',
     resetButton: 'Сбросить',
-    resetTooltip: 'Вернуть сохранённые значения',
+    resetTooltip: 'Сбросить до значений по умолчанию',
     backButton: 'Назад',
     backTooltip: 'Вернуться к анализатору',
     closeTooltip: 'Закрыть настройки',

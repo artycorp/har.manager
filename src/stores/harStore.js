@@ -427,6 +427,18 @@ export const useHarStore = defineStore('har', {
     },
 
     /**
+     * Reset configuration to default values
+     */
+    resetToDefaults() {
+      this.grafanaConfig = { ...DEFAULT_CONFIG }
+      try {
+        localStorage.setItem(STORAGE_KEY_CONFIG, JSON.stringify(this.grafanaConfig))
+      } catch (err) {
+        console.error('Failed to reset config in localStorage:', err)
+      }
+    },
+
+    /**
      * Generate Loki URL for a request
      */
     getLokiUrl(entry) {

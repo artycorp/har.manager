@@ -96,7 +96,7 @@ export default {
     saveButton: 'Save Configuration',
     saving: 'Saving...',
     resetButton: 'Reset',
-    resetTooltip: 'Reset to saved values',
+    resetTooltip: 'Reset to default values',
     backButton: 'Back',
     backTooltip: 'Back to analyzer',
     closeTooltip: 'Close settings',

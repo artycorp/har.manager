@@ -168,7 +168,7 @@
             </button>
 
             <button
-              @click="loadConfig"
+              @click="resetToDefaults"
               :disabled="saving"
               class="px-6 py-3 bg-cyber-bg-medium text-cyber-text-dim font-mono font-bold uppercase tracking-wider rounded-lg border-2 border-cyber-border hover:border-cyber-text-dim hover:text-cyber-text transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               :title="t('settings.resetTooltip')"
@@ -229,6 +229,21 @@ const loadConfig = () => {
   } catch (err) {
     error.value = err.message || 'Failed to load configuration'
     console.error('Failed to load config:', err)
+  }
+}
+
+const resetToDefaults = () => {
+  try {
+    error.value = null
+    harStore.resetToDefaults()
+    config.value = { ...harStore.grafanaConfig }
+    saveSuccess.value = true
+    setTimeout(() => {
+      saveSuccess.value = false
+    }, 3000)
+  } catch (err) {
+    error.value = err.message || 'Failed to reset configuration'
+    console.error('Failed to reset config:', err)
   }
 }
 
