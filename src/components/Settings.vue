@@ -168,7 +168,7 @@
             </button>
 
             <button
-              @click="resetToDefaults"
+              @click="showResetConfirm = true"
               :disabled="saving"
               class="px-6 py-3 bg-cyber-bg-medium text-cyber-text-dim font-mono font-bold uppercase tracking-wider rounded-lg border-2 border-cyber-border hover:border-cyber-text-dim hover:text-cyber-text transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               :title="t('settings.resetTooltip')"
@@ -190,6 +190,45 @@
         </div>
       </div>
 
+      <!-- Reset Confirmation Modal -->
+      <div v-if="showResetConfirm" class="fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" @click="showResetConfirm = false"></div>
+        
+        <!-- Dialog Content -->
+        <div class="relative w-full max-w-md bg-cyber-bg-dark border-2 border-cyber-magenta rounded-lg overflow-hidden animate-slide-in-up shadow-[0_0_50px_rgba(255,0,128,0.2)]">
+          <!-- Header -->
+          <div class="flex items-center justify-between px-6 py-3 bg-cyber-magenta/10 border-b border-cyber-magenta/30">
+            <span class="font-mono text-sm font-bold text-cyber-magenta uppercase tracking-widest flex items-center gap-2">
+              <i class="pi pi-exclamation-triangle"></i>
+              {{ t('settings.resetConfirmTitle') }}
+            </span>
+          </div>
+          
+          <!-- Body -->
+          <div class="p-6">
+            <p class="font-mono text-cyber-text text-center">
+              {{ t('settings.resetConfirmMessage') }}
+            </p>
+          </div>
+          
+          <!-- Actions -->
+          <div class="flex gap-3 p-6 pt-0">
+            <button
+              @click="confirmReset"
+              class="flex-1 px-4 py-2 bg-cyber-magenta text-white font-mono font-bold uppercase tracking-wider rounded border border-cyber-magenta hover:bg-transparent hover:text-cyber-magenta transition-all duration-200"
+            >
+              {{ t('settings.resetConfirmButton') }}
+            </button>
+            <button
+              @click="showResetConfirm = false"
+              class="flex-1 px-4 py-2 bg-cyber-bg-medium text-cyber-text-dim font-mono font-bold uppercase tracking-wider rounded border border-cyber-border hover:text-cyber-text hover:border-cyber-text transition-all duration-200"
+            >
+              {{ t('settings.cancelButton') }}
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -216,6 +255,7 @@ const config = ref({
 const saving = ref(false)
 const saveSuccess = ref(false)
 const error = ref(null)
+const showResetConfirm = ref(false)
 
 const handleClose = () => {
   emit('close')
@@ -233,10 +273,15 @@ const loadConfig = () => {
 }
 
 const resetToDefaults = () => {
+  showResetConfirm.value = true
+}
+
+const confirmReset = () => {
   try {
     error.value = null
     harStore.resetToDefaults()
     config.value = { ...harStore.grafanaConfig }
+    showResetConfirm.value = false
     saveSuccess.value = true
     setTimeout(() => {
       saveSuccess.value = false
