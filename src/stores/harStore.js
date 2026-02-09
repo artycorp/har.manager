@@ -4,12 +4,12 @@ import { parseHarFile } from '@/utils/harParser'
 const STORAGE_KEY_CONFIG = 'har_manager_config'
 
 const DEFAULT_CONFIG = {
-  grafana_loki_url: '',
+  grafana_loki_url: 'https://artycorp.github.io/request.demo/?requestId={request_id}&from={from}&to={to}',
   grafana_loki_escape: true,
   coroot_url: '',
-  grafana_path_url: '',
+  grafana_path_url: 'https://artycorp.github.io/path.demo/?path={path}&client_name={client_name}&from={from}&to={to}',
   grafana_path_loki_escape: true,
-  sentry_trace_url: '',
+  sentry_trace_url: 'https://artycorp.github.io/sentry.demo/?query=trace:{trace_id}&start={from}&end={to}',
 }
 
 export const useHarStore = defineStore('har', {
