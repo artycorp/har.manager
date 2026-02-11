@@ -85,6 +85,19 @@ npx playwright test --ui
 - **Component Tests** (55 tests): Vue component logic (filters, waterfall, comparison)
 - **E2E Tests** (22 tests): Full user flows with Playwright
 
+### Git Hooks
+
+Pre-push hook automatically runs all tests before pushing to `main` branch. This ensures broken code never reaches production.
+
+```bash
+# Tests run automatically on git push origin main
+git push origin main
+# ✓ 182 Vitest tests
+# ✓ 22 E2E Playwright tests
+```
+
+See [HOOKS.md](HOOKS.md) for details and bypass instructions.
+
 ### CI/CD
 
 Tests run automatically on GitHub Actions for every push and pull request. See [test workflow](.github/workflows/test.yml) for details.
