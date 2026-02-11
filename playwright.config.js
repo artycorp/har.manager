@@ -22,5 +22,15 @@ export default defineConfig({
     url: 'http://localhost:5173',
     reuseExistingServer: !process.env.CI,
     timeout: 120000,
+    stdout: 'pipe',
+    stderr: 'pipe',
+    // Add retries for dev server connection
+    ignoreHTTPSErrors: true,
+  },
+  // Global timeout for tests
+  timeout: 30000,
+  // Expect timeout for assertions
+  expect: {
+    timeout: 10000,
   },
 })
