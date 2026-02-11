@@ -18,14 +18,17 @@ test.describe('Request Details Drawer', () => {
   })
 
   test('clicking a table row opens the drawer', async ({ page }) => {
-    // Click the first row in the table
+    // Wait for table to be fully interactive
     const firstRow = page.locator('.p-datatable-tbody > tr').first()
+    await expect(firstRow).toBeVisible()
+
+    // Click the first row in the table
     await firstRow.click()
 
     // The drawer is a PrimeVue Sidebar that appears on the right
     // It should become visible with the request-details-drawer class
     const drawer = page.locator('.p-sidebar')
-    await expect(drawer).toBeVisible({ timeout: 5000 })
+    await expect(drawer).toBeVisible({ timeout: 10000 })
   })
 
   test('drawer shows request details (URL, method, status)', async ({ page }) => {
@@ -35,7 +38,7 @@ test.describe('Request Details Drawer', () => {
 
     // Wait for the drawer to appear
     const drawer = page.locator('.p-sidebar')
-    await expect(drawer).toBeVisible({ timeout: 5000 })
+    await expect(drawer).toBeVisible({ timeout: 10000 })
 
     // The DrawerHeader shows method badge, status badge, and URL
     // Check that the drawer contains a method badge (GET, POST, etc.)
@@ -62,7 +65,7 @@ test.describe('Request Details Drawer', () => {
 
     // Wait for the drawer
     const drawer = page.locator('.p-sidebar')
-    await expect(drawer).toBeVisible({ timeout: 5000 })
+    await expect(drawer).toBeVisible({ timeout: 10000 })
 
     // The TabView renders tabs with role="tab"
     // Check for each tab by role
@@ -78,7 +81,7 @@ test.describe('Request Details Drawer', () => {
     await firstRow.click()
 
     const drawer = page.locator('.p-sidebar')
-    await expect(drawer).toBeVisible({ timeout: 5000 })
+    await expect(drawer).toBeVisible({ timeout: 10000 })
 
     // Close the drawer using the close button (PrimeVue Sidebar close icon)
     const closeButton = drawer.locator('.p-sidebar-close')

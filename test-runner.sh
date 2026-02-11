@@ -38,7 +38,27 @@ fi
 if [ "$USE_DOCKER" = "1" ]; then
   # Docker execution
   echo -e "${CYAN}[1/3] Building test Docker image...${NC}"
+
+  # Temporarily use .dockerignore.test if it exists
+  if [ -f ".dockerignore.test" ]; then
+    mv .dockerignore .dockerignore.bak 2>/dev/null || true
+    cp .dockerignore.test .dockerignore
+  fi
+
   docker build -f test.Dockerfile -t ${DOCKER_IMAGE_NAME}:${DOCKER_TAG} . 2>&1 | tail -5
+  build_exit=$?
+
+  # Restore original .dockerignore
+  if [ -f ".dockerignore.bak" ]; then
+    mv .dockerignore.bak .dockerignore
+  fi
+
+  if [ $build_exit -ne 0 ]; then
+    echo -e "\n${RED}╔════════════════════════════════════════════════╗${NC}"
+    echo -e "${RED}║  ❌ Docker build FAILED                         ║${NC}"
+    echo -e "${RED}╚════════════════════════════════════════════════╝${NC}\n"
+    exit 1
+  fi
 
   if [ $? -ne 0 ]; then
     echo -e "\n${RED}╔════════════════════════════════════════════════╗${NC}"

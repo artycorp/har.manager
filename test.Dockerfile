@@ -1,20 +1,8 @@
 # Test runner Dockerfile for HAR Manager
 # Used for running tests in isolated environment (CI/CD and optional local pre-push)
+# Uses official Playwright image with pre-installed browsers
 
-FROM node:20-alpine
-
-# Install Playwright dependencies
-RUN apk add --no-cache \
-    chromium \
-    nss \
-    freetype \
-    harfbuzz \
-    ca-certificates \
-    ttf-freefont
-
-# Set Playwright to use system chromium
-ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
-ENV PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium-browser
+FROM mcr.microsoft.com/playwright:v1.58.2-noble
 
 WORKDIR /app
 
@@ -25,10 +13,8 @@ COPY package*.json ./
 RUN npm ci
 
 # Copy source code
+# Note: test-runner.sh temporarily swaps .dockerignore to include tests
 COPY . .
-
-# Set up Playwright
-RUN npx playwright install-deps || true
 
 # Expose dev server port
 EXPOSE 5173
