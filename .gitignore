@@ -58,6 +58,9 @@ logs/
 .coverage
 htmlcov/
 test-results/
+coverage/
+playwright-report/
+.nyc_output/
 
 # Temporary files
 *.tmp

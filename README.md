@@ -1,5 +1,8 @@
 # HAR.MANAGER
 
+![Test Suite](https://github.com/YOUR_USERNAME/YOUR_REPO/actions/workflows/test.yml/badge.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A high-performance, privacy-focused HTTP Archive (HAR) analyzer. It processes data entirely in your browser—no data is ever sent to a server.
 
 **[Live Demo](https://artycorp.github.io/har.manager/)**
@@ -51,6 +54,40 @@ npm run dev
 ```
 
 The development server will start at `http://localhost:5173`.
+
+## Testing
+
+The project includes a comprehensive test suite with **182 unit/component/store tests** and **22 E2E tests**.
+
+### Run all tests
+
+```bash
+# Unit, component, and store tests (Vitest)
+npm test
+
+# Run tests in watch mode
+npm test -- --watch
+
+# Generate coverage report
+npm test -- --coverage
+
+# E2E tests (Playwright)
+npm run test:e2e
+
+# E2E tests in UI mode
+npx playwright test --ui
+```
+
+### Test Structure
+
+- **Unit Tests** (42 tests): Core utilities (`harParser.js`, `curlGenerator.js`, `formatters.js`)
+- **Store Tests** (85 tests): Pinia store getters, actions, URL generators, config persistence
+- **Component Tests** (55 tests): Vue component logic (filters, waterfall, comparison)
+- **E2E Tests** (22 tests): Full user flows with Playwright
+
+### CI/CD
+
+Tests run automatically on GitHub Actions for every push and pull request. See [test workflow](.github/workflows/test.yml) for details.
 
 ## How to Use
 

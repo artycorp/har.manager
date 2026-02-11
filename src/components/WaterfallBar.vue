@@ -61,6 +61,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { formatDuration } from '@/utils/formatters'
 
 const { t } = useI18n()
 
@@ -101,10 +102,6 @@ const getSegmentWidth = (segmentDuration) => {
   return `${percent}%`
 }
 
-const formatDuration = (ms) => {
-  if (ms < 1000) return `${Math.round(ms)}ms`
-  return `${(ms / 1000).toFixed(2)}s`
-}
 </script>
 
 <style scoped>

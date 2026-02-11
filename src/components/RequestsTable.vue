@@ -245,6 +245,7 @@
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useHarStore } from '@/stores/harStore'
+import { formatDuration, formatSize } from '@/utils/formatters'
 import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
 import ContextMenu from 'primevue/contextmenu'
@@ -501,16 +502,6 @@ const getDurationClass = (duration) => {
   return 'text-cyber-text'
 }
 
-const formatDuration = (ms) => {
-  if (ms < 1000) return `${Math.round(ms)}ms`
-  return `${(ms / 1000).toFixed(2)}s`
-}
-
-const formatSize = (bytes) => {
-  if (bytes < 1024) return `${bytes}B`
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(2)}KB`
-  return `${(bytes / (1024 * 1024)).toFixed(2)}MB`
-}
 </script>
 
 <style>
