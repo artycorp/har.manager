@@ -7,6 +7,8 @@ A high-performance, privacy-focused HTTP Archive (HAR) analyzer. It processes da
 
 **[Live Demo](https://artycorp.github.io/har.manager/)**
 
+![har.manager.gif](har.manager.gif)
+
 ## Features
 
 -   **Local-First Analysis**: All processing happens client-side using the FileReader API. Your sensitive request data stays on your machine.
