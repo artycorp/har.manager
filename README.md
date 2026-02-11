@@ -1,6 +1,6 @@
 # HAR.MANAGER
 
-![Test Suite](https://github.com/YOUR_USERNAME/YOUR_REPO/actions/workflows/test.yml/badge.svg)
+![Test Suite](https://github.com/artycorp/har.manager/actions/workflows/test.yml/badge.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A high-performance, privacy-focused HTTP Archive (HAR) analyzer. It processes data entirely in your browser—no data is ever sent to a server.
